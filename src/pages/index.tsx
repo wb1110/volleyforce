@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import { withSSRSession, useAuth } from "@frontegg/nextjs";
 
-export default function MyPage({ products }) {
+export default function MyPage() {
   const { user } = useAuth();
 
   //baseUrl should be your FRONTEGG_APP_URL from .env.local

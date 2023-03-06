@@ -10,17 +10,11 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  globalSetup: require.resolve("./playwright/.auth/auth.setup"),
   projects: [
-    // Setup project
-    // { name: "setup", testMatch: /.*\.setup\.ts/ },
-
     {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        // Use prepared auth state.
-        storageState: "playwright/.auth/user.json",
       },
     },
 
@@ -28,8 +22,6 @@ export default defineConfig({
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
-        // Use prepared auth state.
-        storageState: "playwright/.auth/user.json",
       },
     },
   ],

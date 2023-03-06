@@ -4,17 +4,18 @@ import { test, expect } from "@playwright/test";
 // Define a test suite
 test.describe("My Page", () => {
   // Define a test case
-  test("should log out the user", async ({ page }) => {
+  test("should log in the user", async ({ page }) => {
     await page.goto("/");
     // You are signed in!
+    //   await page.goto("/");
+    await page.waitForURL(
+      "https://app-yec57rbn7c0e.frontegg.com/oauth/account/login"
+    );
+    await page.fill('[name="email"]', "strengthcoachwb@gmail.com");
+    await page.fill('[name="password"]', "Password1!");
+    await page.click('[type="submit"]');
 
     // Wait for the user name to be visible
     await page.waitForSelector("text=Logged in as:");
-
-    // Click on the log out button
-    await page.click('button:text("Log out")');
-
-    // Expect to be redirected to the logout page
-    await expect(page).toHaveURL("http://localhost:3000/account/logout");
   });
 });

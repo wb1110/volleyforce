@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 
 test("redirct to newegg and login", async ({ page }) => {
   await page.goto("/");
@@ -10,7 +10,10 @@ test("redirct to newegg and login", async ({ page }) => {
 
   await page.goto("https://app-yec57rbn7c0e.frontegg.com/oauth/account/login");
 
-  // await page.getByLabel("Email").fill("strengthcoachwb@gmail.com");
-  // await page.getByLabel("Password").fill("Password1!");
-  // await page.getByText("Login").click();
+  // Fill in email and password
+  await page.fill('[name="email"]', "strengthcoachwb@gmail.com");
+  await page.fill('[name="password"]', "Password1!");
+
+  // Click on the submit button
+  await page.click('[type="submit"]');
 });

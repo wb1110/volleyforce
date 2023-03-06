@@ -10,9 +10,10 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  globalSetup: require.resolve("./playwright/.auth/auth.setup"),
   projects: [
     // Setup project
-    { name: "setup", testMatch: /.*\.setup\.ts/ },
+    // { name: "setup", testMatch: /.*\.setup\.ts/ },
 
     {
       name: "chromium",
@@ -21,7 +22,6 @@ export default defineConfig({
         // Use prepared auth state.
         storageState: "playwright/.auth/user.json",
       },
-      dependencies: ["setup"],
     },
 
     {
@@ -31,7 +31,6 @@ export default defineConfig({
         // Use prepared auth state.
         storageState: "playwright/.auth/user.json",
       },
-      dependencies: ["setup"],
     },
   ],
   testDir: "./tests",
@@ -56,13 +55,8 @@ export default defineConfig({
   reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-    actionTimeout: 0,
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: "http://localhost:3000",
-
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
+    baseURL: "http://localhost:3000/",
+    storageState: "state.json",
   },
 
   /* Configure projects for major browsers */

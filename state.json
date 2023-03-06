@@ -1,0 +1,39 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://localhost:3000",
+      "localStorage": [
+        {
+          "name": "HOSTED_LOGIN_VERIFIER_KEY",
+          "value": "e4CtMjcH8ux0ckM2"
+        },
+        {
+          "name": "FRONTEGG_AFTER_AUTH_REDIRECT_URL",
+          "value": "http://localhost:3000/"
+        }
+      ]
+    },
+    {
+      "origin": "https://app-yec57rbn7c0e.frontegg.com",
+      "localStorage": [
+        {
+          "name": "FRONTEGG_OAUTH_REDIRECT_AFTER_LOGIN",
+          "value": "http://localhost:3000/oauth/callback"
+        },
+        {
+          "name": "preferred-login-method",
+          "value": "main"
+        },
+        {
+          "name": "FRONTEGG_ORIGIN_URL",
+          "value": "https://app-yec57rbn7c0e.frontegg.com/oauth/account/login"
+        },
+        {
+          "name": "FRONTEGG_OAUTH_STATE_AFTER_LOGIN",
+          "value": "d25e318f-1bae-42e5-b791-cbadd8cf297c"
+        }
+      ]
+    }
+  ]
+}

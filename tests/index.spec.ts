@@ -5,6 +5,9 @@ import { test, expect } from "@playwright/test";
 test.describe("My Page", () => {
   // Define a test case
   test("should log out the user", async ({ page }) => {
+    await page.goto("/");
+    // You are signed in!
+
     // Wait for the user name to be visible
     await page.waitForSelector("text=Logged in as:");
 

@@ -1,5 +1,11 @@
 import { GetServerSideProps } from "next";
 import { withSSRSession, useAuth } from "@frontegg/nextjs";
+import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import Dashboard from "@/containers/dashboard/Dashboard";
 
 export default function MyPage() {
   const { user } = useAuth();
@@ -11,16 +17,21 @@ export default function MyPage() {
     window.location.href = `${baseUrl}/account/logout`;
   };
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#363740",
+      },
+      secondary: {
+        main: "#FFFFFF",
+      },
+    },
+  });
+
   return (
-    <div>
-      <h1>My Page</h1>
-      <div>
-        <span>Logged in as: {user?.name}</span>
-      </div>
-      <div>
-        <button onClick={logout}>Log out</button>
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Dashboard />
+    </ThemeProvider>
   );
 }
 

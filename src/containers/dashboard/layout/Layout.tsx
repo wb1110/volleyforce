@@ -22,15 +22,11 @@ export default function Layout({ children }) {
       >
         <Toolbar />
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          {/* {currentLink === 'dashboard' && <DashboardSelected />}
-            {currentLink === 'services' && <Services />} */}
-          {/* <Copyright sx={{ pt: 4 }} /> */}
           {children}
         </Container>
 
         <Footer />
       </Box>
-      {/* <main>{children}</main> */}
     </Box>
   );
 }

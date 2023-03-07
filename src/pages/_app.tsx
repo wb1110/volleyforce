@@ -5,9 +5,8 @@ import { NextPage } from "next";
 import { ThemeProvider, createTheme } from "@mui/material";
 import Layout from "@/containers/dashboard/layout/Layout";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP>;
+// & { getLayout?: (page: ReactElement) => ReactNode; }
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -15,7 +14,7 @@ type AppPropsWithLayout = AppProps & {
 
 export function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout ?? ((page) => page);
+  // const getLayout = Component.getLayout ?? ((page) => page);
   const theme = createTheme({
     palette: {
       primary: {
@@ -27,7 +26,7 @@ export function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     },
   });
 
-  return getLayout(
+  return (
     <ThemeProvider theme={theme}>
       <Layout>
         <Component {...pageProps} />

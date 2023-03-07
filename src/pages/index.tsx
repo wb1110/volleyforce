@@ -5,24 +5,15 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ReactElement } from "react";
+import { NextPageWithLayout } from "./_app";
 
-export default function MyPage() {
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#363740",
-      },
-      secondary: {
-        main: "#FFFFFF",
-      },
-    },
-  });
+const Page: NextPageWithLayout = () => {
+  return <Dashboard />;
+};
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Layout>
-        <Dashboard />
-      </Layout>
-    </ThemeProvider>
-  );
-}
+Page.getLayout = function getLayout(page: ReactElement) {
+  return <>{page}</>;
+};
+
+export default Page;

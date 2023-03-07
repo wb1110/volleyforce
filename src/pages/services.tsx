@@ -1,8 +1,9 @@
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import ServicesList from "../containers/services/ServicesList";
+import Layout from "@/containers/dashboard/layout/Layout";
 
-function ServicesContent() {
+function Services() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -14,6 +15,4 @@ function ServicesContent() {
   );
 }
 
-export default function Services() {
-  return <ServicesContent />;
-}
+export default Services;

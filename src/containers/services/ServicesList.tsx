@@ -6,6 +6,8 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Title from "./Title";
+import { Button } from "@mui/material";
+import AddNewService from "./AddNewService";
 
 // Generate Order Data
 function createData(
@@ -26,9 +28,18 @@ const rows = [
 ];
 
 export default function ServicesList() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+
   return (
     <React.Fragment>
-      <Title>Services Offered</Title>
+      <section style={{ display: "flex", justifyContent: "space-between" }}>
+        <Title>Services Offered</Title>
+        <Button variant="contained" size="small" onClick={handleOpen}>
+          Add New Service
+        </Button>
+        <AddNewService open={open} setOpen={setOpen} />
+      </section>
       <Table size="small">
         <TableHead>
           <TableRow>

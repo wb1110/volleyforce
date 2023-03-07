@@ -4,7 +4,11 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
 
-export default function Layout({ children }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Box sx={{ display: "flex" }}>
       <Navbar />
@@ -29,4 +33,6 @@ export default function Layout({ children }) {
       </Box>
     </Box>
   );
-}
+};
+
+export default Layout;

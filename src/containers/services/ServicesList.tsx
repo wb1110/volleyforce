@@ -1,5 +1,5 @@
 import * as React from "react";
-import Link from "@mui/material/Link";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -46,6 +46,7 @@ export default function ServicesList() {
             <TableCell>Service Name</TableCell>
             <TableCell>Service Type</TableCell>
             <TableCell align="right">Amount</TableCell>
+            <TableCell align="center">Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -54,6 +55,9 @@ export default function ServicesList() {
               <TableCell>{row.serviceName}</TableCell>
               <TableCell>{row.serviceType}</TableCell>
               <TableCell align="right">{`$${row.amount}`}</TableCell>
+              <TableCell align="center">
+                <MoreHorizIcon />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

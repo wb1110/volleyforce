@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
     "@frontegg/nextjs": "^6.7.18",
+    "@frontegg/react": "^5.0.24",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.12",
     "@types/node": "18.14.5",

@@ -1,4 +1,5 @@
 import { useAuth } from "@frontegg/nextjs";
+import { AdminPortal } from "@frontegg/react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Button } from "@mui/material";

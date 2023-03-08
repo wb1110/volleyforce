@@ -1,3 +1,4 @@
+import { AdminPortal } from "@frontegg/nextjs";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
@@ -75,7 +76,7 @@ export const MainListItems = ({
 
 export const secondaryListItems = (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton onClick={() => AdminPortal.show()}>
       <ListItemIcon>
         <SettingsIcon />
       </ListItemIcon>

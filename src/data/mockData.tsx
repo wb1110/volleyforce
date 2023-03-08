@@ -11,6 +11,8 @@ interface User {
   id: string;
   name: string;
   email: string;
+  phoneNumber: number;
+  address: string;
   services: Service[]; // An array of service objects
 }
 
@@ -19,6 +21,8 @@ let user: User = {
   id: "8ff8093e-1785-457d-9eab-37c446151542",
   name: "William Buchanan",
   email: "strengthcoachwb@gmail.com",
+  phoneNumber: 2142027316,
+  address: "1819 Auburn Drive, Richardson, TX, 75081",
   services: [
     { id: 1, serviceName: "Club Dues", serviceType: "Club", price: 500 },
     {

@@ -9,10 +9,14 @@ import Title from "./Title";
 import { Button } from "@mui/material";
 import AddNewService from "./AddNewService";
 import user from "@/data/mockData";
+import useSWR from "swr";
 
 export default function ServicesList() {
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const { data, error } = useSWR("/api/services", fetcher);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+  console.log(data, error, "data");
 
   return (
     <React.Fragment>

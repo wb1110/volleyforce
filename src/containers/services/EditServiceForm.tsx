@@ -11,7 +11,6 @@ import axios from "axios";
 
 // Define the component that renders the form
 const EditServiceForm = ({ service }) => {
-  console.log(service, "service in edit");
   // Define the state variables for the form fields
   const [serviceName, setServiceName] = useState(service.name ?? "");
   const [serviceType, setServiceType] = useState(service.type ?? "");

@@ -8,9 +8,10 @@ export default async function handle(
 ) {
   if (req.method === "PUT") {
     // Update an existing post
-    const { id, name, type, price } = req.body;
+    const { id } = req.query;
+    const { name, type, price } = req.body;
     const service = await prisma.service.update({
-      where: { id },
+      where: { id: id },
       data: {
         name,
         type,

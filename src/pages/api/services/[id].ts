@@ -11,7 +11,7 @@ export default async function handle(
     const { id } = req.query;
     const { name, type, price } = req.body;
     const service = await prisma.service.update({
-      where: { id: id },
+      where: { id: Number(id) },
       data: {
         name,
         type,

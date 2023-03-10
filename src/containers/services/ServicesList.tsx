@@ -15,7 +15,6 @@ export default function ServicesList() {
   const { data, error } = useSWR("/api/services", fetcher);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  console.log(data, error, "data");
 
   return (
     <React.Fragment>
@@ -36,16 +35,18 @@ export default function ServicesList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((service) => (
-            <TableRow key={service.id}>
-              <TableCell>{service.name}</TableCell>
-              <TableCell>{service.type}</TableCell>
-              <TableCell align="right">{`$${service.price}`}</TableCell>
-              <TableCell align="center">
-                <MoreHorizIcon />
-              </TableCell>
-            </TableRow>
-          ))}
+          {data
+            ? data.map((service) => (
+                <TableRow key={service.id}>
+                  <TableCell>{service.name}</TableCell>
+                  <TableCell>{service.type}</TableCell>
+                  <TableCell align="right">{`$${service.price}`}</TableCell>
+                  <TableCell align="center">
+                    <MoreHorizIcon />
+                  </TableCell>
+                </TableRow>
+              ))
+            : null}
         </TableBody>
       </Table>
     </React.Fragment>

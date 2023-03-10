@@ -7,6 +7,7 @@ import {
   FormHelperText,
   Button,
 } from "@mui/material";
+import axios from "axios";
 
 // Define the component that renders the form
 const AddNewServiceForm = () => {
@@ -19,6 +20,14 @@ const AddNewServiceForm = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     // Prevent the default browser behavior
     event.preventDefault();
+    axios
+      .post("/api/services", {
+        name: serviceName,
+        type: serviceType,
+        price: amount,
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error(err));
     // Do something with the form values
     // const service = await prisma.service.create({
     //   data: {

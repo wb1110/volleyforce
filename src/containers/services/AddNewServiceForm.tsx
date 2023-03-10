@@ -16,11 +16,18 @@ const AddNewServiceForm = () => {
   const [amount, setAmount] = useState(0);
 
   // Define the handler function for the form submission
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     // Prevent the default browser behavior
     event.preventDefault();
     // Do something with the form values
-    console.log({ serviceName, serviceType, amount });
+    // const service = await prisma.service.create({
+    //   data: {
+    //     name: serviceName,
+    //     type: serviceType,
+    //     price: amount,
+    //   },
+    // });
+    // console.log(service, "new service");
   };
 
   return (

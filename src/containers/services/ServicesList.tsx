@@ -1,18 +1,17 @@
-import * as React from "react";
+import fetcher from "@/pages/api/fetcher";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { Button } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Title from "./Title";
-import { Button } from "@mui/material";
-import AddNewService from "./AddNewService";
-import user from "@/data/mockData";
+import * as React from "react";
 import useSWR from "swr";
+import AddNewService from "./AddNewService";
+import Title from "./Title";
 
 export default function ServicesList() {
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const { data, error } = useSWR("/api/services", fetcher);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -37,10 +36,10 @@ export default function ServicesList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {user.services.map((service) => (
+          {data.map((service) => (
             <TableRow key={service.id}>
-              <TableCell>{service.serviceName}</TableCell>
-              <TableCell>{service.serviceType}</TableCell>
+              <TableCell>{service.name}</TableCell>
+              <TableCell>{service.type}</TableCell>
               <TableCell align="right">{`$${service.price}`}</TableCell>
               <TableCell align="center">
                 <MoreHorizIcon />

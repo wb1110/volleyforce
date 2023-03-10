@@ -9,12 +9,19 @@ import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import useSWR from "swr";
 import AddNewService from "./AddNewService";
+import EditService from "./EditService";
 import Title from "./Title";
 
 export default function ServicesList() {
   const { data, error } = useSWR("/api/services", fetcher);
   const [open, setOpen] = React.useState(false);
+  const [editOpen, setEditOpen] = React.useState(false);
+  const [selectedService, setSelectedService] = React.useState(null);
   const handleOpen = () => setOpen(true);
+  const handleEditOpen = (service) => {
+    setSelectedService(service);
+    setEditOpen(true);
+  };
 
   return (
     <React.Fragment>
@@ -42,7 +49,12 @@ export default function ServicesList() {
                   <TableCell>{service.type}</TableCell>
                   <TableCell align="right">{`$${service.price}`}</TableCell>
                   <TableCell align="center">
-                    <MoreHorizIcon />
+                    <MoreHorizIcon onClick={() => handleEditOpen(service)} />
+                    <EditService
+                      open={editOpen}
+                      setOpen={setEditOpen}
+                      service={selectedService}
+                    />
                   </TableCell>
                 </TableRow>
               ))

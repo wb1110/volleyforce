@@ -11,9 +11,12 @@ import {
 } from "@mui/material";
 
 import axios from "axios";
+interface AddNewServiceProps {
+  update: () => void;
+}
 
 // Define the component that renders the form
-const AddNewServiceForm = ({ update }) => {
+const AddNewServiceForm = ({ update }: AddNewServiceProps) => {
   // Define the state variables for the form fields
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");

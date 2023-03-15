@@ -10,18 +10,59 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Define the User table
 model User {
-  id         Int      @id @default(autoincrement())
-  name       String
-  email      String   @unique
-  phone      String?
-  created_at DateTime @default(now())
+  user_id      Int      @id @default(autoincrement())
+  username     String
+  password     String
+  email        String
+  phone_number String
+  payments     Payment[]
+  subscriptions Subscription[]
 }
 
+// Define the Services table
 model Service {
-  id         Int      @id @default(autoincrement())
-  name       String
-  type       String
-  created_at DateTime @default(now())
-  price      Float
+  service_id  Int     @id @default(autoincrement())
+  service_name String
+  description String
+  price       Float
+  status      String
+  payments    Payment[]
+  subscriptions Subscription[]
+}
+
+// Define the Payments table
+model Payment {
+  payment_id   Int         @id @default(autoincrement())
+  amount       Float
+  payment_date DateTime
+  user_id      Int
+  service_id   Int
+  user         User        @relation(fields: [user_id], references: [user_id])
+  service      Service     @relation(fields: [service_id], references: [service_id])
+  transactions Transaction[]
+}
+
+// Define the Subscriptions table
+model Subscription {
+  subscription_id Int      @id @default(autoincrement())
+  start_date      DateTime
+  end_date        DateTime
+  user_id         Int
+  service_id      Int
+  user            User     @relation(fields: [user_id], references: [user_id])
+  service         Service  @relation(fields: [service_id], references: [service_id])
+  transactions    Transaction[]
+}
+
+// Define the Transactions table
+model Transaction {
+  transaction_id  Int        @id @default(autoincrement())
+  payment_id      Int
+  subscription_id Int
+  status          String
+  transaction_date DateTime
+  payment         Payment    @relation(fields: [payment_id], references: [payment_id])
+  subscription    Subscription? @relation(fields: [subscription_id], references: [subscription_id])
 }

@@ -22,9 +22,9 @@ export default async function handle(
     res.status(200).json(service);
   } else if (req.method === "DELETE") {
     // Delete an existing post
-    const { service_id } = req.query;
+    const { id } = req.query;
     const service = await prisma.service.delete({
-      where: { service_id: Number(service_id) },
+      where: { service_id: Number(id) },
     });
     res.status(200).json(service);
   }

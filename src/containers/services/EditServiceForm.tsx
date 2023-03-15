@@ -49,6 +49,13 @@ const EditServiceForm = ({ service, update }: EditServiceFormProps) => {
       .catch((err) => console.error(err));
   };
 
+  const handleDelete = async () => {
+    axios
+      .delete(`/api/services/${service.service_id}`)
+      .then((res) => update())
+      .catch((err) => console.error(err));
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -90,9 +97,14 @@ const EditServiceForm = ({ service, update }: EditServiceFormProps) => {
           <MenuItem value="Disabled">Disabled</MenuItem>
         </Select>
       </FormControl>
-      <Button type="submit" variant="contained">
-        Submit
-      </Button>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <Button type="submit" variant="contained">
+          Submit
+        </Button>
+        <Button onClick={handleDelete} variant="contained" color="error">
+          Delete
+        </Button>
+      </div>
     </form>
   );
 };

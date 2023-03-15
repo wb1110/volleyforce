@@ -6,6 +6,8 @@ import {
   Input,
   FormHelperText,
   Button,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import axios from "axios";
 
@@ -17,9 +19,12 @@ interface Service {
   status: string;
 }
 
+type EditServiceFormProps = {
+  service: Service;
+};
+
 // Define the component that renders the form
-const EditServiceForm = ({ service }) => {
-  console.log(service, "editserviceform");
+const EditServiceForm = ({ service }: EditServiceFormProps) => {
   // Define the state variables for the form fields
   const [serviceName, setServiceName] = useState(service.service_name ?? "");
   const [serviceDescription, setServiceDescription] = useState(
@@ -33,7 +38,7 @@ const EditServiceForm = ({ service }) => {
     // Prevent the default browser behavior
     event.preventDefault();
     axios
-      .put(`/api/services/${service.id}`, {
+      .put(`/api/services/${service.service_id}`, {
         service_name: serviceName,
         description: serviceDescription,
         price: amount,
@@ -74,13 +79,15 @@ const EditServiceForm = ({ service }) => {
         />
       </FormControl>
       <FormControl margin="normal" required>
-        <InputLabel htmlFor="amount">Status</InputLabel>
-        <Input
+        <InputLabel htmlFor="serviceStatus">Status</InputLabel>
+        <Select
           id="status"
           value={status}
           onChange={(event) => setStatus(event.target.value)}
-          type="number"
-        />
+        >
+          <MenuItem value="Active">Active</MenuItem>
+          <MenuItem value="Disabled">Disabled</MenuItem>
+        </Select>
       </FormControl>
       <Button type="submit" variant="contained">
         Submit

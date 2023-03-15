@@ -21,10 +21,11 @@ interface Service {
 
 type EditServiceFormProps = {
   service: Service;
+  update: () => void;
 };
 
 // Define the component that renders the form
-const EditServiceForm = ({ service }: EditServiceFormProps) => {
+const EditServiceForm = ({ service, update }: EditServiceFormProps) => {
   // Define the state variables for the form fields
   const [serviceName, setServiceName] = useState(service.service_name ?? "");
   const [serviceDescription, setServiceDescription] = useState(
@@ -44,7 +45,7 @@ const EditServiceForm = ({ service }: EditServiceFormProps) => {
         price: amount,
         status: status,
       })
-      .then((res) => console.log(res.data))
+      .then((res) => update())
       .catch((err) => console.error(err));
   };
 

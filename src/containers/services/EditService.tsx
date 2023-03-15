@@ -24,12 +24,14 @@ interface EditServiceProps {
     price: number;
     status: string;
   };
+  update: () => void;
 }
 
 export default function EditService({
   open,
   setOpen,
   service,
+  update,
 }: EditServiceProps) {
   const handleClose = () => setOpen(false);
   return (
@@ -42,7 +44,7 @@ export default function EditService({
         sx={{ "& .MuiBackdrop-root": { backgroundColor: "#00000009" } }}
       >
         <Box sx={style}>
-          <EditServiceForm service={service} />
+          <EditServiceForm service={service} update={update} />
         </Box>
       </Modal>
     </>

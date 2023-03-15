@@ -75,6 +75,7 @@ export default function ServicesList() {
                       open={editOpen}
                       setOpen={setEditOpen}
                       service={selectedService as Service}
+                      update={handleUpdateService}
                     />
                   </TableCell>
                 </TableRow>

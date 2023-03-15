@@ -11,12 +11,13 @@ export default async function handle(
     res.status(200).json(services);
   } else if (req.method === "POST") {
     // Create a new post
-    const { name, type, price } = req.body;
+    const { service_name, description, price, status } = req.body;
     const service = await prisma.service.create({
       data: {
-        name,
-        type,
+        service_name,
+        description,
         price,
+        status,
       },
     });
     res.status(201).json(service);

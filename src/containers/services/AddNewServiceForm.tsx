@@ -13,7 +13,8 @@ import axios from "axios";
 const AddNewServiceForm = () => {
   // Define the state variables for the form fields
   const [serviceName, setServiceName] = useState("");
-  const [serviceType, setServiceType] = useState("");
+  const [serviceDescription, setServiceDescription] = useState("");
+  const [serviceStatus, setServiceStatus] = useState("");
   const [amount, setAmount] = useState(0);
 
   // Define the handler function for the form submission
@@ -22,9 +23,10 @@ const AddNewServiceForm = () => {
     event.preventDefault();
     axios
       .post("/api/services", {
-        name: serviceName,
-        type: serviceType,
+        service_name: serviceName,
+        description: serviceDescription,
         price: amount,
+        status: serviceStatus,
       })
       .then((res) => console.log(res.data))
       .catch((err) => console.error(err));
@@ -32,7 +34,7 @@ const AddNewServiceForm = () => {
     // const service = await prisma.service.create({
     //   data: {
     //     name: serviceName,
-    //     type: serviceType,
+    //     type: serviceDescription,
     //     price: amount,
     //   },
     // });
@@ -53,11 +55,11 @@ const AddNewServiceForm = () => {
         />
       </FormControl>
       <FormControl margin="normal" required>
-        <InputLabel htmlFor="serviceType">Service Type</InputLabel>
+        <InputLabel htmlFor="serviceDescription">Service Type</InputLabel>
         <Input
-          id="serviceType"
-          value={serviceType}
-          onChange={(event) => setServiceType(event.target.value)}
+          id="serviceDescription"
+          value={serviceDescription}
+          onChange={(event) => setServiceDescription(event.target.value)}
         />
       </FormControl>
       <FormControl margin="normal" required>
@@ -67,6 +69,14 @@ const AddNewServiceForm = () => {
           value={amount}
           onChange={(event) => setAmount(parseInt(event.target.value))}
           type="number"
+        />
+      </FormControl>
+      <FormControl margin="normal" required>
+        <InputLabel htmlFor="serviceStatus">Status</InputLabel>
+        <Input
+          id="serviceStatus"
+          value={serviceStatus}
+          onChange={(event) => setServiceStatus(event.target.value)}
         />
       </FormControl>
       <Button type="submit" variant="contained">

@@ -8,22 +8,23 @@ export default async function handle(
 ) {
   if (req.method === "PUT") {
     // Update an existing post
-    const { id } = req.query;
-    const { name, type, price } = req.body;
+    const { service_id } = req.query;
+    const { service_name, description, price, status } = req.body;
     const service = await prisma.service.update({
-      where: { id: Number(id) },
+      where: { service_id: Number(service_id) },
       data: {
-        name,
-        type,
+        service_name,
+        description,
         price,
+        status,
       },
     });
     res.status(200).json(service);
   } else if (req.method === "DELETE") {
     // Delete an existing post
-    const { id } = req.body;
+    const { service_id } = req.query;
     const service = await prisma.service.delete({
-      where: { id },
+      where: { service_id },
     });
     res.status(200).json(service);
   }

@@ -22,10 +22,11 @@ interface EditServiceProps {
   open: boolean;
   setOpen: (value: boolean) => void;
   service: {
-    id: number;
-    name: string;
-    type: string;
+    service_id: number;
+    service_name: string;
+    description: string;
     price: number;
+    status: string;
   };
 }
 

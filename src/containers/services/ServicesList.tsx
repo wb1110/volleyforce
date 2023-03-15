@@ -36,7 +36,7 @@ export default function ServicesList() {
         <TableHead>
           <TableRow>
             <TableCell>Service Name</TableCell>
-            <TableCell>Service Type</TableCell>
+            <TableCell>Service Description</TableCell>
             <TableCell align="right">Price</TableCell>
             <TableCell align="center">Edit</TableCell>
           </TableRow>
@@ -45,9 +45,10 @@ export default function ServicesList() {
           {data
             ? data.map((service) => (
                 <TableRow key={service.id}>
-                  <TableCell>{service.name}</TableCell>
-                  <TableCell>{service.type}</TableCell>
+                  <TableCell>{service.service_name}</TableCell>
+                  <TableCell>{service.description}</TableCell>
                   <TableCell align="right">{`$${service.price}`}</TableCell>
+                  <TableCell align="right">{`$${service.status}`}</TableCell>
                   <TableCell align="center">
                     <MoreHorizIcon onClick={() => handleEditOpen(service)} />
                     <EditService

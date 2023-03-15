@@ -12,13 +12,23 @@ import AddNewService from "./AddNewService";
 import EditService from "./EditService";
 import Title from "./Title";
 
+interface Service {
+  service_id: number;
+  service_name: string;
+  description: string;
+  price: number;
+  status: string;
+}
+
 export default function ServicesList() {
-  const { data, error } = useSWR("/api/services", fetcher);
+  const { data, error } = useSWR<Service[]>("/api/services", fetcher);
   const [open, setOpen] = React.useState(false);
   const [editOpen, setEditOpen] = React.useState(false);
-  const [selectedService, setSelectedService] = React.useState(null);
+  const [selectedService, setSelectedService] = React.useState<Service | null>(
+    null
+  );
   const handleOpen = () => setOpen(true);
-  const handleEditOpen = (service) => {
+  const handleEditOpen = (service: Service) => {
     setSelectedService(service);
     setEditOpen(true);
   };
@@ -45,7 +55,7 @@ export default function ServicesList() {
         <TableBody>
           {data
             ? data.map((service) => (
-                <TableRow key={service.id}>
+                <TableRow key={service.service_id}>
                   <TableCell>{service.service_name}</TableCell>
                   <TableCell>{service.description}</TableCell>
                   <TableCell align="right">{`$${service.price}`}</TableCell>
@@ -55,7 +65,7 @@ export default function ServicesList() {
                     <EditService
                       open={editOpen}
                       setOpen={setEditOpen}
-                      service={selectedService}
+                      service={selectedService as Service}
                     />
                   </TableCell>
                 </TableRow>

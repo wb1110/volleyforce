@@ -38,6 +38,7 @@ export default function ServicesList() {
             <TableCell>Service Name</TableCell>
             <TableCell>Service Description</TableCell>
             <TableCell align="right">Price</TableCell>
+            <TableCell align="right">Status</TableCell>
             <TableCell align="center">Edit</TableCell>
           </TableRow>
         </TableHead>

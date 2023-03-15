@@ -12,57 +12,78 @@ datasource db {
 
 // Define the User table
 model User {
-  user_id      Int      @id @default(autoincrement())
+  user_id      Int    @id @default(autoincrement())
   username     String
   password     String
   email        String
   phone_number String
-  payments     Payment[]
-  subscriptions Subscription[]
 }
 
 // Define the Services table
 model Service {
-  service_id  Int     @id @default(autoincrement())
+  service_id   Int       @id @default(autoincrement())
   service_name String
-  description String
-  price       Float
-  status      String
-  payments    Payment[]
-  subscriptions Subscription[]
+  description  String
+  price        Float
+  status       String
+  payments     Payment[]
 }
 
-// Define the Payments table
+///////////////////React Native Tables//////////////////////
+
+model Customer {
+  id             Int             @id @default(autoincrement())
+  name           String
+  email          String          @unique
+  phone          String
+  address        String?
+  city           String?
+  state          String?
+  zip            String?
+  birthdate      DateTime?
+  payments       Payment[]
+  participants   Participant[]
+  paymentMethods PaymentMethod[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
 model Payment {
-  payment_id   Int         @id @default(autoincrement())
-  amount       Float
-  payment_date DateTime
-  user_id      Int
-  service_id   Int
-  user         User        @relation(fields: [user_id], references: [user_id])
-  service      Service     @relation(fields: [service_id], references: [service_id])
-  transactions Transaction[]
-}
-
-// Define the Subscriptions table
-model Subscription {
-  subscription_id Int      @id @default(autoincrement())
-  start_date      DateTime
-  end_date        DateTime
-  user_id         Int
-  service_id      Int
-  user            User     @relation(fields: [user_id], references: [user_id])
-  service         Service  @relation(fields: [service_id], references: [service_id])
-  transactions    Transaction[]
-}
-
-// Define the Transactions table
-model Transaction {
-  transaction_id  Int        @id @default(autoincrement())
-  payment_id      Int
-  subscription_id Int
+  id              Int            @id @default(autoincrement())
+  amount          Float
   status          String
-  transaction_date DateTime
-  payment         Payment    @relation(fields: [payment_id], references: [payment_id])
-  subscription    Subscription? @relation(fields: [subscription_id], references: [subscription_id])
+  customerId      Int
+  customer        Customer       @relation(fields: [customerId], references: [id])
+  service_id      Int
+  service         Service        @relation(fields: [service_id], references: [service_id])
+  paymentMethodId Int?
+  paymentMethod   PaymentMethod? @relation(fields: [paymentMethodId], references: [id])
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model PaymentMethod {
+  id                      Int       @id @default(autoincrement())
+  customerId              Int
+  customer                Customer  @relation(fields: [customerId], references: [id])
+  providerCustomerId      String
+  providerPaymentMethodId String
+  mandateId               String
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  Payment                 Payment[]
+}
+
+model Participant {
+  id                  Int      @id @default(autoincrement())
+  firstName           String
+  lastName            String
+  birthdate           DateTime
+  isMinor             Boolean
+  parentGuardianName  String
+  parentGuardianEmail String
+  customerId          Int
+  customer            Customer @relation(fields: [customerId], references: [id])
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 }

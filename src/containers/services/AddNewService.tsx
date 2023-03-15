@@ -20,9 +20,14 @@ const style = {
 interface AddNewServiceProps {
   open: boolean;
   setOpen: (value: boolean) => void;
+  update: () => void;
 }
 
-export default function AddNewService({ open, setOpen }: AddNewServiceProps) {
+export default function AddNewService({
+  open,
+  setOpen,
+  update,
+}: AddNewServiceProps) {
   const handleClose = () => setOpen(false);
   return (
     <>
@@ -33,7 +38,7 @@ export default function AddNewService({ open, setOpen }: AddNewServiceProps) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <AddNewServiceForm setOpen={setOpen} />
+          <AddNewServiceForm update={update} />
         </Box>
       </Modal>
     </>

@@ -7,7 +7,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import AddNewService from "./AddNewService";
 import EditService from "./EditService";
 import Title from "./Title";
@@ -22,6 +22,7 @@ interface Service {
 
 export default function ServicesList() {
   const { data, error } = useSWR<Service[]>("/api/services", fetcher);
+  const { mutate } = useSWRConfig();
   const [open, setOpen] = React.useState(false);
   const [editOpen, setEditOpen] = React.useState(false);
   const [selectedService, setSelectedService] = React.useState<Service | null>(
@@ -32,6 +33,10 @@ export default function ServicesList() {
     setSelectedService(service);
     setEditOpen(true);
   };
+  const handleUpdateService = () => {
+    setOpen(false); // close the AddNewService dialog
+    mutate("/api/services"); // revalidate the data
+  };
 
   return (
     <React.Fragment>
@@ -40,7 +45,11 @@ export default function ServicesList() {
         <Button variant="contained" size="small" onClick={handleOpen}>
           Add New Service
         </Button>
-        <AddNewService open={open} setOpen={setOpen} />
+        <AddNewService
+          open={open}
+          setOpen={setOpen}
+          update={handleUpdateService}
+        />
       </section>
       <Table size="small">
         <TableHead>

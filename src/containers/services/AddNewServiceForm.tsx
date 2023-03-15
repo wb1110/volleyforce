@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 
 // Define the component that renders the form
-const AddNewServiceForm = ({ setOpen }) => {
+const AddNewServiceForm = ({ update }) => {
   // Define the state variables for the form fields
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
@@ -28,7 +28,7 @@ const AddNewServiceForm = ({ setOpen }) => {
         price: amount,
         status: serviceStatus,
       })
-      .then((res) => setOpen(false))
+      .then((res) => update())
       .catch((err) => console.error(err));
   };
 

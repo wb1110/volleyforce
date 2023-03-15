@@ -10,7 +10,7 @@ const style = {
   width: 400,
   bgcolor: "background.paper",
   border: "2px solid #000",
-  boxShadow: 24,
+  boxShadow: 12,
   p: 4,
 };
 
@@ -39,6 +39,7 @@ export default function EditService({
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={{ "& .MuiBackdrop-root": { backgroundColor: "#00000009" } }}
       >
         <Box sx={style}>
           <EditServiceForm service={service} />

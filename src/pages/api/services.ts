@@ -14,10 +14,10 @@ export default async function handle(
     const { service_name, description, price, status } = req.body;
     const service = await prisma.service.create({
       data: {
-        service_name,
-        description,
-        price,
-        status,
+        service_name: String(service_name),
+        description: String(description),
+        price: Number(price),
+        status: String(status),
       },
     });
     res.status(201).json(service);

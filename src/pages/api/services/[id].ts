@@ -24,7 +24,7 @@ export default async function handle(
     // Delete an existing post
     const { service_id } = req.query;
     const service = await prisma.service.delete({
-      where: { service_id },
+      where: { service_id: Number(service_id) },
     });
     res.status(200).json(service);
   }

@@ -9,12 +9,24 @@ import {
 } from "@mui/material";
 import axios from "axios";
 
+interface Service {
+  service_id: number;
+  service_name: string;
+  description: string;
+  price: number;
+  status: string;
+}
+
 // Define the component that renders the form
 const EditServiceForm = ({ service }) => {
+  console.log(service, "editserviceform");
   // Define the state variables for the form fields
-  const [serviceName, setServiceName] = useState(service.name ?? "");
-  const [serviceType, setServiceType] = useState(service.type ?? "");
+  const [serviceName, setServiceName] = useState(service.service_name ?? "");
+  const [serviceDescription, setServiceDescription] = useState(
+    service.description ?? ""
+  );
   const [amount, setAmount] = useState(service.price ?? 0);
+  const [status, setStatus] = useState(service.status ?? "");
 
   // Define the handler function for the form submission
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -22,9 +34,10 @@ const EditServiceForm = ({ service }) => {
     event.preventDefault();
     axios
       .put(`/api/services/${service.id}`, {
-        name: serviceName,
-        type: serviceType,
+        service_name: serviceName,
+        description: serviceDescription,
         price: amount,
+        status: status,
       })
       .then((res) => console.log(res.data))
       .catch((err) => console.error(err));
@@ -47,8 +60,8 @@ const EditServiceForm = ({ service }) => {
         <InputLabel htmlFor="serviceType">Service Type</InputLabel>
         <Input
           id="serviceType"
-          value={serviceType}
-          onChange={(event) => setServiceType(event.target.value)}
+          value={serviceDescription}
+          onChange={(event) => setServiceDescription(event.target.value)}
         />
       </FormControl>
       <FormControl margin="normal" required>
@@ -57,6 +70,15 @@ const EditServiceForm = ({ service }) => {
           id="amount"
           value={amount}
           onChange={(event) => setAmount(parseInt(event.target.value))}
+          type="number"
+        />
+      </FormControl>
+      <FormControl margin="normal" required>
+        <InputLabel htmlFor="amount">Status</InputLabel>
+        <Input
+          id="status"
+          value={status}
+          onChange={(event) => setStatus(event.target.value)}
           type="number"
         />
       </FormControl>

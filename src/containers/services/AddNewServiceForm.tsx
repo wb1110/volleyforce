@@ -6,7 +6,10 @@ import {
   Input,
   FormHelperText,
   Button,
+  Select,
+  MenuItem,
 } from "@mui/material";
+
 import axios from "axios";
 
 // Define the component that renders the form
@@ -66,12 +69,16 @@ const AddNewServiceForm = ({ update }) => {
       </FormControl>
       <FormControl margin="normal" required>
         <InputLabel htmlFor="serviceStatus">Status</InputLabel>
-        <Input
+        <Select
           id="serviceStatus"
           value={serviceStatus}
           onChange={(event) => setServiceStatus(event.target.value)}
-        />
+        >
+          <MenuItem value="Active">Active</MenuItem>
+          <MenuItem value="Disabled">Disabled</MenuItem>
+        </Select>
       </FormControl>
+
       <Button type="submit" variant="contained">
         Submit
       </Button>

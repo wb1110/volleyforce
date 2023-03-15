@@ -37,6 +37,10 @@ export default function ServicesList() {
     setOpen(false); // close the AddNewService dialog
     mutate("/api/services"); // revalidate the data
   };
+  const handleEditService = () => {
+    setEditOpen(false); // close the AddNewService dialog
+    mutate("/api/services"); // revalidate the data
+  };
 
   return (
     <React.Fragment>
@@ -75,7 +79,7 @@ export default function ServicesList() {
                       open={editOpen}
                       setOpen={setEditOpen}
                       service={selectedService as Service}
-                      update={handleUpdateService}
+                      update={handleEditService}
                     />
                   </TableCell>
                 </TableRow>

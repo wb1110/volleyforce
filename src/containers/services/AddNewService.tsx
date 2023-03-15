@@ -33,7 +33,7 @@ export default function AddNewService({ open, setOpen }: AddNewServiceProps) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <AddNewServiceForm />
+          <AddNewServiceForm setOpen={setOpen} />
         </Box>
       </Modal>
     </>

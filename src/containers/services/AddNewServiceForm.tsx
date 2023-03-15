@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 
 // Define the component that renders the form
-const AddNewServiceForm = () => {
+const AddNewServiceForm = ({ setOpen }) => {
   // Define the state variables for the form fields
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
@@ -28,17 +28,8 @@ const AddNewServiceForm = () => {
         price: amount,
         status: serviceStatus,
       })
-      .then((res) => console.log(res.data))
+      .then((res) => setOpen(false))
       .catch((err) => console.error(err));
-    // Do something with the form values
-    // const service = await prisma.service.create({
-    //   data: {
-    //     name: serviceName,
-    //     type: serviceDescription,
-    //     price: amount,
-    //   },
-    // });
-    // console.log(service, "new service");
   };
 
   return (
@@ -55,7 +46,9 @@ const AddNewServiceForm = () => {
         />
       </FormControl>
       <FormControl margin="normal" required>
-        <InputLabel htmlFor="serviceDescription">Service Type</InputLabel>
+        <InputLabel htmlFor="serviceDescription">
+          Service Description
+        </InputLabel>
         <Input
           id="serviceDescription"
           value={serviceDescription}

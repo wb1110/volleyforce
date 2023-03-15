@@ -59,7 +59,7 @@ export default function ServicesList() {
                   <TableCell>{service.service_name}</TableCell>
                   <TableCell>{service.description}</TableCell>
                   <TableCell align="right">{`$${service.price}`}</TableCell>
-                  <TableCell align="right">{`$${service.status}`}</TableCell>
+                  <TableCell align="right">{service.status}</TableCell>
                   <TableCell align="center">
                     <MoreHorizIcon onClick={() => handleEditOpen(service)} />
                     <EditService
